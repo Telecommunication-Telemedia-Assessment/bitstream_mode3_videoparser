@@ -1,0 +1,16 @@
+Outputs/
+TestMain/TestMain.o
+VideoParser/.sconsign.dblite
+VideoParser/VideoParser.os
+VideoParser/VideoStat264.o
+VideoParser/VideoStat264.os
+VideoParser/VideoStatCommon.o
+VideoParser/VideoStatCommon.os
+VideoParser/VideoStatHEVC.o
+VideoParser/VideoStatHEVC.os
+VideoParser/VideoStatVP9.o
+VideoParser/VideoStatVP9.os
+VideoParser/libvideoparser.so
+VideoParser/videoparser_testmain
+__pycache__/
+PythonInterface/lib/__pycache__/*

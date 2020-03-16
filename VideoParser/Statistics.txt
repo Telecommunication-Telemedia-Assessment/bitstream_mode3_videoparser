@@ -1,0 +1,38 @@
+
+Codecs:			H.264		H.265		VP9
+------------------------------------------------------------------
+
+QP:
+per Mb:			x		x
+Avg QP:			x		x		x
+
+Motion Vectors:
+
+Slices:			x		x		x (Segments)
+
+Mb Types:
+0:	SKIPP		x		x
+1:	FWD		x		x
+2:	BWD		x		x
+3:	BIDIR		x		x
+4:	DIRECT		x		x
+5:	INTRA_BLK	x  (4x4)	x (Block-Mode)	x
+6:	INTRA_PLN	x (16x16)	x (Plane-Mode)
+
+Shapes (PU):
+0:	 4x 4		x		x		x
+1:	 4x 8, 8x4     (x)		x		x
+2:	 8x 8		x		x		x
+3:	 8x16, 16x8	x		x		x
+4:	16x16		x		x		x
+5:	16x32, 32x16			x		x
+6:	32x32				x		x
+7:	32x64, 64x32			x		x
+8:	64x64				x		x
+
+Shapes (TU)
+0:	 4x4		x		x		x
+1:	 8x8		x		x		x
+2:	16x16				x		x
+3:	32x32				x		x
+4:	64x64				x
