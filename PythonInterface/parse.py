@@ -31,27 +31,27 @@ def file_open(filename, mode="r"):
 
 def main():
     # argument parsing
-    parser = argparse.ArgumentParser(description='T-Labs Video Parser v0.1',
-                                     epilog="2017",
+    parser = argparse.ArgumentParser(description='Video Parser v0.1',
+                                     epilog="2017--2020",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('input', type=str, help="input video")
     parser.add_argument('--dll', type=str, default="../VideoParser/libvideoparser.so", help="Path to DLL")
     parser.add_argument('--output', type=str, default=None, help="Path to output JSON stats file, a file extension of .json.bz2 will compress it; if None report filename will be autoamtically estimated based on video name")
 
-    argsdict = vars(parser.parse_args())
+    a = vars(parser.parse_args())
 
-    video_parser = videoparser.VideoParser(argsdict['input'], argsdict['dll'])
+    video_parser = videoparser.VideoParser(a['input'], a['dll'])
     video_parser.set_frame_callback(frame_parsed)
     video_parser.parse()
 
-    if not argsdict['output']:
-        argsdict['output'] = os.path.splitext(os.path.basename(a["input"]))[0] + ".json.bz2"
+    if not a['output']:
+        a['output'] = os.path.splitext(os.path.basename(a["input"]))[0] + ".json.bz2"
 
     # write stats
-    print("Writing stats to output file: " + argsdict['output'])
+    print("Writing stats to output file: " + a['output'])
     stats = video_parser.get_stats()
-    with file_open(argsdict['output'], "w") as outfile:
+    with file_open(a['output'], "w") as outfile:
         json.dump(stats, outfile, indent=4, sort_keys=True)
 
 
