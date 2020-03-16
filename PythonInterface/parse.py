@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# T-Labs Video Parser
+# Video Parser
 # Python Interface
 #
-# Author: Werner Robitza
+# Author: Werner Robitza, Steve Göring
 
 
 import sys
@@ -18,7 +18,9 @@ import lib.videoparser as videoparser
 
 
 def file_open(filename, mode="r"):
-    """ Open a file, and if you add bz2 to filename a compressed file will be opened
+    """
+    Opens a file, and if you add bz2 to filename a
+    compressed file will be opened
     """
     if "bz2" in filename:
         return bz2.open(filename, mode + "t")
@@ -35,7 +37,7 @@ def main():
 
     parser.add_argument('input', type=str, help="input video")
     parser.add_argument('--dll', type=str, default="../VideoParser/libvideoparser.so", help="Path to DLL")
-    parser.add_argument('--output', type=str, default="stats.json.bz2", help="Path to output JSON stats file")
+    parser.add_argument('--output', type=str, default=None, help="Path to output JSON stats file, a file extension of .json.bz2 will compress it; if None report filename will be autoamtically estimated based on video name")
 
     argsdict = vars(parser.parse_args())
 
@@ -43,12 +45,14 @@ def main():
     video_parser.set_frame_callback(frame_parsed)
     video_parser.parse()
 
+    if not argsdict['output']:
+        argsdict['output'] = os.path.splitext(os.path.basename(a["input"]))[0] + ".json.bz2"
+
     # write stats
-    if argsdict['output']:
-        print("Writing stats to output file: " + argsdict['output'])
-        stats = video_parser.get_stats()
-        with file_open(argsdict['output'], "w") as outfile:
-            json.dump(stats, outfile, indent=4, sort_keys=True)
+    print("Writing stats to output file: " + argsdict['output'])
+    stats = video_parser.get_stats()
+    with file_open(argsdict['output'], "w") as outfile:
+        json.dump(stats, outfile, indent=4, sort_keys=True)
 
 
 def frame_parsed(frame_info):

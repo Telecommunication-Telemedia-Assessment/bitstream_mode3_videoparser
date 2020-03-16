@@ -10,20 +10,19 @@ env = Environment()
 env.Decider("MD5")
 
 needed_libs = ["avcodec", "avformat", "avutil"]
-PATH = [".",
-        "../ffmpeg/"
-        ]
+PATH = [
+    ".",
+    "../ffmpeg/"
+]
 
 env.Append(CPPPATH=PATH, LIBPATH=["../Outputs/lib"])
 env.Append(CCFLAGS=["-O0", "-g"])
 env.Append(CFLAGS=["-std=gnu99"])
 env.Append(CXXFLAGS=["-D__STDC_CONSTANT_MACROS", "-std=c++98"])
 
-sources = set(glob.glob("*.cpp") + glob.glob("*.c")) - set(["dllmain.cpp", "VideoParser.cpp", "stdafx.cpp", "demuxing_decoding.c"])
+sources = set(glob.glob("*.cpp") + glob.glob("*.c")) - set(["dllmain.cpp", "VideoParser.cpp", "stdafx.cpp"])
 
 _lib = env.SharedLibrary("videoparser", ["VideoParser.cpp"] + list(sources), LIBS=needed_libs)
 _cmd = env.Program("videoparser_testmain", ["../TestMain/TestMain.cpp"] + list(sources), LIBS=needed_libs + _lib)
-# just for testing
-#_cmd = env.Program("videoparser_testmain", ["demuxing_decoding.c"], LIBS=needed_libs + _lib)
 
 Default(_lib, _cmd)
