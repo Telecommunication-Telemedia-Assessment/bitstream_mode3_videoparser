@@ -294,8 +294,16 @@ static void BlockMVStatsVP9( VP9Context* s, VIDEO_STAT* FrmStat, int count, floa
   //else
   // FrmDist = (FrmStat->PTS - s->s.refs[ b->ref[0] ].f->pts) / s->s.frames[0].tf.f->pkt_duration ;
 
-
-  FrmDist = max( 1, (FrmStat->PTS - s->s.refs[ b->ref[0] ].f->pts) / s->s.frames[0].tf.f->pkt_duration ) ;
+  // the following line:
+  // FrmDist = max( 1, (FrmStat->PTS - s->s.refs[ b->ref[0] ].f->pts) / s->s.frames[0].tf.f->pkt_duration ) ;
+  // was changed to the A, B thing, because B can be zero, and then everything breaks
+  float B = s->s.frames[0].tf.f->pkt_duration;
+  if (B == 0) {
+      FrmDist = 1;  // not sure about this value
+  } else {
+      float A = FrmStat->PTS - s->s.refs[ b->ref[0] ].f->pts;
+      FrmDist = max( 1, (A) / B ) ;
+  }
 
   if (b->bs > BS_8x8)
 		{
@@ -460,7 +468,7 @@ void FrameStatistics( AVCodecContext* ctx, VIDEO_STAT* FrmStat, VIDEO_STAT* FrmS
     S->MV_XSQR      /= VP9Hidden_FrmStat.S.FrameDistance ;
     S->MV_YSQR      /= VP9Hidden_FrmStat.S.FrameDistance ;
 
-    memcpy( FrmStat,    &VP9Hidden_FrmStat, sizeof( VIDEO_STAT ) ) ; 
+    memcpy( FrmStat,    &VP9Hidden_FrmStat, sizeof( VIDEO_STAT ) ) ;
     memcpy( FrmStatRef, &VP9Hidden_FrmStat, sizeof( VIDEO_STAT ) ) ;
     }
   else
