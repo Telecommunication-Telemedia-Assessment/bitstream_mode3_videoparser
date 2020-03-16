@@ -1,7 +1,5 @@
 #!/bin/sh
-# x86_64-pc-linux-gnu-gcc \
-#x86_64-pc-linux-gnu-g++ \
-# x86_64-pc-linux-gnu-ar \
+
 ./configure  \
   --prefix="../Outputs" \
   --cc=x86_64-linux-gnu-gcc \
@@ -43,4 +41,3 @@
   --enable-demuxer=matroska \
   --enable-protocol=file
 
-#--disable-everything

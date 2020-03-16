@@ -6,7 +6,7 @@ Authors: Peter List, Anton Schubert, Steve Göring, Werner Robitza
 - ExternalLibs: external dependencies for ffmpeg **(only for windows)**
 - ffmpeg: libav* libraries from FFmpeg project
   - Subdirectory ffmpg/SMP contains everything needed to compile ffmpeg under
-    VS-2015. Everything else is the original ffmpeg, modified with // PL annotations
+    VS-2015. Everything else is the original ffmpeg, modified with // P.L. or //A.S. annotations
 - TestMain:    test project for interfacing with the video parser
 - VideoParser: code for a dll parsing any video with the help of ffmpeg and providing
                statistical information on a frame basis
