@@ -1,5 +1,6 @@
 # Bitstream Mode3 Videoparser
 The following repository consists of a video parser that can extract video statistics without decoding pixel information from a given vidoe file, here the statistics refer to higher mode statistics, considering e.g. motion, block sizes, qp values, ....
+
 For a direct application of this videoparser please checkout [ITU-T P.1204.3 Reference Implementation](https://github.com/Telecommunication-Telemedia-Assessment/bitstream_mode3_p1204_3).
 
 
@@ -61,8 +62,7 @@ It will open a GDB run of the main video parser library, to type `run` and check
 
 
 ## Development
-see [development.md](./development.md)
-
+To further add new codecs or measures, please see [development.md](./development.md).
 
 
 ## Authors
