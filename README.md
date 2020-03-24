@@ -6,9 +6,9 @@ For a direct application of this videoparser please checkout [ITU-T P.1204.3 Ref
 ## Requirements
 To build the videoparser on a linux system (e.g. Ubuntu 18.04 or newer) you need the following main requirements:
 
-* Python 3
-* SCons build system
-* GCC
+* python 3
+* scons build system
+* gcc
 
 All requirements can be installed with the following commands:
 ```bash
@@ -77,5 +77,5 @@ see [development.md](./development.md)
 ## Licence
 This video parser is based on several marked changes in FFmpeg and additional developed software.
 The FFmpeg software is under the GNU Lesser General Public License version 2.1 (LGPL v2.1+), see `ffmpeg/COPYING.LGPLv2.1`.
-In addition all non FFmpeg related sotware parts are also under LGPL v2.1+, see `COPYING.LGPLv2.1`.
+In addition all non FFmpeg related sotware parts are also under LGPL v2.1+, see `LICENCE.md`.
 
