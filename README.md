@@ -37,7 +37,7 @@ sudo pip3 install pandas
 If you want to run the parser under Windows please checkout [development.md](./development.md).
 
 ## Building
-To finally build the parser run `build_and_test.sh`, or
+To finally build the parser run `./build_and_test.sh`, or
 
 ```bash
 # Configure, Build and Install ffmpeg
