@@ -1,5 +1,5 @@
-The bitstream mode 3 video parser can run under windows and linux,
-however the windows setup is a bit more complicated.
+The bitstream mode 3 video parser can user under Windows and Linux,
+however the Windows setup is a bit more complicated, e.g. requires visual studio for compilation.
 
 ## Repository structure
 
