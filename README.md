@@ -1,73 +1,13 @@
 # bitstream_mode3_videoparser
-Authors: Peter List, Anton Schubert, Steve Göring, Werner Robitza
 
-## Explanation
+## Requirements
+To build the videoparser on a linux system (e.g. Ubuntu 18.04 or newer) you need the following main requirements:
 
-- ExternalLibs: external dependencies for ffmpeg **(only for windows)**
-- ffmpeg: libav* libraries from FFmpeg project
-  - Subdirectory ffmpg/SMP contains everything needed to compile ffmpeg under
-    VS-2015. Everything else is the original ffmpeg, modified with // P.L. or //A.S. annotations
-- TestMain:    test project for interfacing with the video parser
-- VideoParser: code for a dll parsing any video with the help of ffmpeg and providing
-               statistical information on a frame basis
+* Python 3
+* SCons build system
+* GCC
 
-## Building under Windows
-
-Install the following requirements:
-
-- Windows 10  (most probably not required)
-- Visual Studio 2015 (Community Edition)
-- Visual C++ Redistributable 2015
-- C++ Tools for Visual Studio
-- [YASM](http://yasm.tortall.net/Download.html)
-  - Download the version for "64-Bit for VS2010 and above"
-  - Copy the vsyasm.exe file to `C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin`
-  - Copy the other files to `C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\BuildCustomizations`
-  - In the `.props` file, replace the occurrence of `$(Platform)` with `win$(PlatformArchitecture)`
-
-Building:
-
-- Open the Visual Studio solution file `TestMain/TestMain.sln`
-- Build the solution in 32-Bit or 64-Bit Debug mode
-- Note that some error messages related to linking are normal
-
-This will output a DLL that can be included in another program. The DLL file is here:
-
-    \videoparser\TestMain\Debug\VideoParser.dll
-
-The DLL will provide a per frame bitstream statistic of the parsed video.
-It contains 3 external functions:
-
-    OpenVideo( char* FileName, BYTE** Parser )
-    ReadNextFrame( BYTE* Parser )
-    GetFrameStatistics( BYTE* Parser, VIDEO_STAT* FrameStat)
-
-In principle this is the way to use the dll:
-
-
-      BYTE*   Parser ;
-      VIDEO_STAT   FrameStatistics
-
-      if( OpenVideo( FileName, &Parser ) )
-        {
-        do
-          {
-          MoreData  = ReadNextFrame( Parser ) ;
-          GetFrameStatistics( Parser, &FrameStatistics ) ;
-          }
-        while( MoreData ) ;
-        } ;
-
-
-## Building under Linux
-
-Requirements:
-- Python 3
-- SCons build system
-- GCC
-
-Ubuntu 18.04 (mostly FFmpeg dependencies):
-
+All requirements can be installed with the following commands:
 ```bash
 sudo apt-get update -qq
 sudo apt-get install -y -qq python3 python3-numpy python3-pip git scons
@@ -76,7 +16,11 @@ sudo pip3 install --upgrade pip
 sudo pip3 install pandas
 ```
 
-Building:
+
+If you want to run the parser under windows please checkout [development.md](./development.md).
+
+## Building
+To finally build the parser run `build_and_test.sh`, or
 
 ```bash
 # Configure, Build and Install ffmpeg
@@ -85,20 +29,50 @@ cd ffmpeg && ./configure_ffmpeg.sh && make -j $(nproc) && make install
 # Build videoparser Application and libvideoparser
 cd ../VideoParser && scons
 ```
-OR for a small test just run `build_and_test.sh`
 
-## Building / Running with Docker
+Now you can call `./parser.sh <video>` or `./parser.sh --help`
 
-First, install Docker, then:
+```
+usage: parse.py [-h] [--dll DLL] [--output OUTPUT] input
 
-    docker build -t videoparser .
+Bitstream Mode 3 Video Parser
 
-This will build the parser into a docker image called `videoparser`.
+positional arguments:
+  input            input video
 
-Then, you can run it on any file:
+optional arguments:
+  -h, --help       show this help message and exit
+  --dll DLL        Path to DLL (default: ../VideoParser/libvideoparser.so)
+  --output OUTPUT  Path to output JSON stats file, a file extension of
+                   .json.bz2 will compress it; if None report filename will be
+                   autoamtically estimated based on video name (default: None)
 
-    docker run --rm -v $(pwd)/test_videos:/test_videos -t videoparser /test_videos/bigbuck_bunny_8bit-hevc-main-2000kbps-60fps-720p-2.mkv --output /test_videos/stats.json.bz2
+2017--2020
+```
 
-Here, you have to mount the directory of the file into Docker.
+If something is not working please run:
+```
+./testmain.sh <video>
+```
+It will open a GDB run of the main video parser library, to type `run` and check if something breaks.
 
+
+## Development
+see [development.md](./development.md)
+
+
+
+## Authors
+
+* Peter List (Deutsche Telekom),
+* Anton Schubert (TU Ilmenau),
+* Steve Göring (TU Ilmenau),
+* Rakesh Rao Ramachandra Rao (TU Ilmenau),
+* Werner Robitza (TU Ilmenau)
+
+
+## Licence
+This video parser is based on several marked changes in FFmpeg and additional developed software.
+The FFmpeg software is under the GNU Lesser General Public License version 2.1 (LGPL v2.1+), see `ffmpeg/COPYING.LGPLv2.1`.
+In addition all non FFmpeg related sotware parts are also under LGPL v2.1+, see `COPYING.LGPLv2.1`.
 
