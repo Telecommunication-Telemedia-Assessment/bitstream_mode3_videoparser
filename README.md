@@ -80,11 +80,17 @@ To further add new codecs or measures, please see [development.md](./development
 
 ## Authors
 
-* Peter List (Deutsche Telekom),
-* Anton Schubert (TU Ilmenau),
-* Steve Göring (TU Ilmenau),
-* Rakesh Rao Ramachandra Rao (TU Ilmenau),
-* Werner Robitza (TU Ilmenau)
+Main developers:
+* Peter List; Deutsche Telekom AG
+* Anton Schubert; Technische Universität Ilmenau
+* Steve Göring; Technische Universität Ilmenau
+* Rakesh Rao Ramachandra Rao; Technische Universität Ilmenau
+* Werner Robitza; Technische Universität Ilmenau
+
+Contributors:
+* Alexander Raake; Technische Universität Ilmenau
+* Bernhard Feiten; Deutsche Telekom AG
+* Ulf Wüstenhagen; Deutsche Telekom AG
 
 
 ## License
