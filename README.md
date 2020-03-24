@@ -96,5 +96,5 @@ Contributors:
 ## License
 This video parser is based on several marked changes in FFmpeg and additional developed software.
 The FFmpeg software is under the GNU Lesser General Public License version 2.1 (LGPL v2.1+), see `ffmpeg/COPYING.LGPLv2.1`.
-In addition all non-FFmpeg related sotware parts are also under LGPL v2.1+, see `LICENCE.md`.
+In addition all non-FFmpeg related sotware parts are also under LGPL v2.1+, see `LICENSE.md`.
 
