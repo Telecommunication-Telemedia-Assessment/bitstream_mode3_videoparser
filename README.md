@@ -1,4 +1,7 @@
-# bitstream_mode3_videoparser
+# Bitstream Mode3 Videoparser
+The following repository consists of a video parser that can extract video statistics without decoding pixel information from a given vidoe file, here the statistics refer to higher mode statistics, considering e.g. motion, block sizes, qp values, ....
+For a direct application of this videoparser please checkout [ITU-T P.1204.3 Reference Implementation](https://github.com/Telecommunication-Telemedia-Assessment/bitstream_mode3_p1204_3).
+
 
 ## Requirements
 To build the videoparser on a linux system (e.g. Ubuntu 18.04 or newer) you need the following main requirements:
@@ -17,7 +20,7 @@ sudo pip3 install pandas
 ```
 
 
-If you want to run the parser under windows please checkout [development.md](./development.md).
+If you want to run the parser under Windows please checkout [development.md](./development.md).
 
 ## Building
 To finally build the parser run `build_and_test.sh`, or
