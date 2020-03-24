@@ -3,6 +3,19 @@ The following repository consists of a video parser that can extract video stati
 
 For a direct application of this videoparser please checkout [ITU-T P.1204.3 Reference Implementation](https://github.com/Telecommunication-Telemedia-Assessment/bitstream_mode3_p1204_3).
 
+If you use this videoparser in any of your research work, please cite the following paper:
+
+```
+@inproceedings{rao2020p1204,
+  author={Rakesh Rao {Ramachandra Rao} and Steve G\"oring and Werner Robitza and Alexander Raake and Bernhard Feiten and Peter List and Ulf Wüstenhagen},
+  title={Bitstream-based Model Standard for 4K/UHD: ITU-T P.1204.3 -- Model Details, Evaluation, Analysis and Open Source Implementation},
+  BOOKTITLE={2020 Twelfth International Conference on Quality of Multimedia Experience (QoMEX)},
+  address="Athlone, Irland",
+  days=26,
+  month=May,
+  year=2020,
+}
+```
 
 ## Requirements
 To build the videoparser on a linux system (e.g. Ubuntu 18.04 or newer) you need the following main requirements:
