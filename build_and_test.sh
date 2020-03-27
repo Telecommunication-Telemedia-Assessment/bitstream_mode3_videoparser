@@ -31,4 +31,4 @@ parse_test_videos() {
 cd "$(dirname "$(readlink -f "$0" || realpath "$0")")"
 build_ffmpeg
 build_videoparser
-#parse_test_videos
+parse_test_videos
