@@ -78,7 +78,7 @@ optional arguments:
   --dll DLL        Path to DLL (default: ../VideoParser/libvideoparser.so)
   --output OUTPUT  Path to output JSON stats file, a file extension of
                    .json.bz2 will compress it; if None report filename will be
-                   autoamtically estimated based on video name (default: None)
+                   automatically estimated based on video name (default: None)
 
 2017--2020
 ```
