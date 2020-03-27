@@ -11,6 +11,7 @@ VideoParser/VideoStatHEVC.os
 VideoParser/VideoStatVP9.o
 VideoParser/VideoStatVP9.os
 VideoParser/libvideoparser.so
+VideoParser/libvideoparser.dylib
 VideoParser/videoparser_testmain
 __pycache__/
 PythonInterface/lib/__pycache__/*

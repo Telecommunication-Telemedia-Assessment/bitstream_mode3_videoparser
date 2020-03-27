@@ -15,6 +15,14 @@ import json
 import bz2
 import gzip
 
+from sys import platform
+if platform == "linux" or platform == "linux2":
+    lib_suffix = ".so"
+elif platform == "darwin":
+    lib_suffix = ".dylib"
+elif platform == "win32":
+    lib_suffix = ".dll"
+
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 import lib.videoparser as videoparser
@@ -44,8 +52,8 @@ def main():
     parser.add_argument(
         "--dll",
         type=str,
-        default="../VideoParser/libvideoparser.so",
-        help="Path to DLL",
+        default="../VideoParser/libvideoparser" + lib_suffix,
+        help="Path to DLL/.so/.dylib",
     )
     parser.add_argument(
         "--output",
