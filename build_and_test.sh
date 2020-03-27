@@ -28,6 +28,11 @@ parse_test_videos() {
     done
 }
 
+if ! command -v scons 2>/dev/null; then
+    echo "'scons' not found. Please install 'scons' first!"
+    exit 1
+fi
+
 cd "$(dirname "$(readlink -f "$0" || realpath "$0")")"
 build_ffmpeg
 build_videoparser
