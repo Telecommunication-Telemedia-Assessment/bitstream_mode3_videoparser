@@ -88,17 +88,3 @@ cd ../VideoParser && scons
 ```
 
 Or, for a small test just run `build_and_test.sh`.
-
-## Building / Running with Docker
-
-First, install Docker, then:
-
-    docker build -t videoparser .
-
-This will build the parser into a docker image called `videoparser`.
-
-Then, you can run it on any file:
-
-    docker run --rm -v $(pwd)/test_videos:/test_videos -t videoparser /test_videos/bigbuck_bunny_8bit-hevc-main-2000kbps-60fps-720p-2.mkv --output /test_videos/stats.json.bz2
-
-Here, you have to mount the directory of the file into Docker.
