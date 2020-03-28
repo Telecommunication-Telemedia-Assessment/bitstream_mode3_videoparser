@@ -51,7 +51,7 @@ def main():
         "--output",
         type=str,
         default=None,
-        help="Path to output JSON stats file, a file extension of .json.bz2 will compress it; if None report filename will be autoamtically estimated based on video name",
+        help="Path to output JSON stats file, a file extension of .json.bz2 will compress it; if None report filename will be automatically estimated based on video name",
     )
 
     a = vars(parser.parse_args())
