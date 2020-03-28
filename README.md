@@ -42,7 +42,7 @@ If you want to run the parser under Windows, please check out [the Development g
 To finally build the parser, either run:
 
 ```bash
-./build_and_test.sh
+./build.sh
 ```
 
 Or, manually run:
@@ -103,17 +103,17 @@ To further add new codecs or measures, please see [development.md](./development
 
 Main developers:
 
-* Peter List – Deutsche Telekom AG
-* Anton Schubert – Technische Universität Ilmenau
-* Steve Göring – Technische Universität Ilmenau
-* Rakesh Rao Ramachandra Rao – Technische Universität Ilmenau
-* Werner Robitza – Technische Universität Ilmenau
+* Peter List - Deutsche Telekom AG
+* Anton Schubert - Technische Universität Ilmenau
+* Steve Göring - Technische Universität Ilmenau
+* Rakesh Rao Ramachandra Rao - Technische Universität Ilmenau
+* Werner Robitza - Technische Universität Ilmenau
 
 Contributors:
 
-* Alexander Raake – Technische Universität Ilmenau
-* Bernhard Feiten – Deutsche Telekom AG
-* Ulf Wüstenhagen – Deutsche Telekom AG
+* Alexander Raake - Technische Universität Ilmenau
+* Bernhard Feiten - Deutsche Telekom AG
+* Ulf Wüstenhagen - Deutsche Telekom AG
 
 
 ## License
