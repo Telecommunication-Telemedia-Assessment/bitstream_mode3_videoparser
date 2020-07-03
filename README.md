@@ -20,7 +20,7 @@ If you use this videoparser in any of your research work, please cite the follow
 
 ## Requirements
 
-To build the videoparser on a Linux system (e.g. Ubuntu 18.04 or newer) you need the following main requirements:
+To build the videoparser on a Linux system (e.g. Ubuntu 18.04/20.04 or newer) you need the following main requirements:
 
 * Python 3
 * `scons` build system
