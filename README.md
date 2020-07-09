@@ -35,6 +35,13 @@ pip3 install --user --upgrade pip
 pip3 install --user pandas
 ```
 
+Under macOS, you can get the dependencies with Homebrew:
+
+```bash
+brew install python3 scons
+pip3 install --user pandas
+```
+
 If you want to run the parser under Windows, please check out [the Development guide](./development.md).
 
 ## Building
