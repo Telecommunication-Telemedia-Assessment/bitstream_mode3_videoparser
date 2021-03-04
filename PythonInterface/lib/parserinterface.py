@@ -14,7 +14,7 @@ class ParserInterface:
         self.dll_file = dll_file
 
         if not os.path.isfile(self.dll_file):
-            raise IOError("DLL file not found")
+            raise IOError("DLL file not found at " + str(dll_file) + ", check if building the librarry succeeded.")
 
         self.dll = CDLL(self.dll_file)
         self.decoded_frames = 0
