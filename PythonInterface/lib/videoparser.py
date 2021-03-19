@@ -10,7 +10,7 @@ class VideoParser:
         self.frame_callback = None
 
         if not os.path.isfile(self.input_file):
-            raise IOError("Input not found")
+            raise IOError("Input not found: " + str(input_file))
 
         self.parser = pi.ParserInterface(self.input_file, dll_path)
         self.collected_stats = []
