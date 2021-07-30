@@ -88,3 +88,23 @@ cd ../VideoParser && scons
 ```
 
 Or, for a small test just run `build_and_test.sh`.
+
+## Debugging
+
+### C Code
+
+There is a GDB-based debugging script under `testmain.sh`. Execute it with a file:
+
+```bash
+./testmain.sh /path/to/file.mp4
+```
+
+You are now in a GDB console and can inspect the code.
+
+To debug with Visual Studio Code, a `launch.json` file is already provided, since setup is more complex. Simply uncomment the line with `args` and specify the path to the video file that should be launche.
+
+The `TestMain.cpp` code partly reproduces what the Python module does.
+
+### Python
+
+Simply add `breakpoint()` wherever you need it.
