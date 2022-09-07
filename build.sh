@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# exit on any error
+set -e
+
 build_ffmpeg() {
     echo "configure, build and install ffmpeg"
     cd ffmpeg

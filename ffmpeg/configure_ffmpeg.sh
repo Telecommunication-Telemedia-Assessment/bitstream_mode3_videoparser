@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 ./configure  \
   --prefix="../Outputs" \
   --cc=x86_64-linux-gnu-gcc \
