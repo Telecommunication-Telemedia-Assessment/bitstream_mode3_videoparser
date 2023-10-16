@@ -8,12 +8,13 @@
 #   * Rakesh Rao Ramachandra Rao,
 #   * Peter List
 
-import sys
-import os
 import argparse
-import json
 import bz2
 import gzip
+import json
+import os
+import sys
+import textwrap
 
 sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
@@ -51,27 +52,44 @@ def main():
         "--output",
         type=str,
         default=None,
-        help="Path to output JSON stats file, a file extension of .json.bz2 will compress it; if None report filename will be automatically estimated based on video name",
+        help=textwrap.dedent(
+            """
+            Path to output .json stats file.
+            Use .ldjson for line-delimited JSON that is written as a frame is parsed.
+            A file extension of .bz2 will compress it.
+            If None report filename will be automatically estimated based on video name.
+            """
+        ),
     )
 
     a = vars(parser.parse_args())
 
     video_parser = videoparser.VideoParser(a["input"], a["dll"])
-    video_parser.set_frame_callback(frame_parsed)
+
+    global output_file
+    output_file = a["output"]
+    if not output_file:
+        output_file = os.path.splitext(os.path.basename(a["input"]))[0] + ".json.bz2"
+
+    use_ldjson = ".ldjson" in output_file
+
+    if use_ldjson:
+        video_parser.set_frame_callback(frame_parsed)
+
     video_parser.parse()
 
-    if not a["output"]:
-        a["output"] = os.path.splitext(os.path.basename(a["input"]))[0] + ".json.bz2"
-
     # write stats
-    print("Writing stats to output file: " + a["output"])
-    stats = video_parser.get_stats()
-    with file_open(a["output"], "w") as outfile:
-        json.dump(stats, outfile, indent=4, sort_keys=True)
+    if not use_ldjson:
+        print("Writing stats to output file: " + output_file)
+        stats = video_parser.get_stats()
+        with file_open(output_file, "w") as outfile:
+            json.dump(stats, outfile, indent=4, sort_keys=True)
 
 
 def frame_parsed(frame_info):
-    pass
+    with file_open(output_file, "a") as outfile:
+        json.dump(frame_info, outfile)
+        outfile.write("\n")
 
 
 if __name__ == "__main__":
