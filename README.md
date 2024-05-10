@@ -18,9 +18,11 @@ If you use this videoparser in any of your research work, please cite the follow
 }
 ```
 
-## Requirements
+## Requirements (Native Linux)
 
-To build the videoparser on a Linux system (e.g. Ubuntu 18.04/20.04 or newer) you need the following main requirements:
+You can also use Docker, see [the Docker guide](#docker).
+
+To build the videoparser on a Linux system (e.g. Ubuntu 18.04/20.04) you need the following main requirements:
 
 * Python 3
 * `scons` build system
@@ -33,6 +35,12 @@ sudo apt-get update -qq
 sudo apt-get -y -qq install python3 python3-numpy python3-pip git scons autoconf automake build-essential libass-dev libfreetype6-dev libsdl2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev pkg-config texinfo wget zlib1g-dev yasm
 pip3 install --user --upgrade pip
 pip3 install --user pandas
+```
+
+For Ubuntu 22.04, you may need to apply a patch to FFmpeg:
+
+```bash
+cd ffmpeg && patch -p1 < ../mathops.patch
 ```
 
 If you want to run the parser under Windows, please check out [the Development guide](./development.md).
@@ -94,10 +102,30 @@ If something is not working, please run:
 It will open a GDB run of the main video parser library. Type `run` and check if something breaks.
 
 
+## Docker
+
+> ⚠️ The Docker container is built for **Linux AMD64**. If you are using a different architecture, you might run into errors.
+> Specifically, we have observed issues building the container under Apple Silicon Macs.
+
+Run:
+
+```bash
+docker build -t videoparser .
+```
+
+Then, to run the parser, assuming you have a video file `input.mp4` in your current directory, run:
+
+```bash
+docker run -it --rm -v $(pwd):/tmp videoparser /tmp/input.mp4 --output /tmp/output.json.bz2
+```
+
+This will create a `output.json.bz2` file in the current directory too.
+
+Note that `/tmp` is the working directory *inside the container*, not on your host.
+
 ## Development
 
 To further add new codecs or measures, please see [development.md](./development.md).
-
 
 ## Authors
 

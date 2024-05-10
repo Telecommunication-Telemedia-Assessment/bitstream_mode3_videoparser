@@ -1,0 +1,8 @@
+Outputs
+.vscode
+.mypy_cache
+**/*.a
+**/*.o
+README.md
+LICENSE.md
+Dockerfile
