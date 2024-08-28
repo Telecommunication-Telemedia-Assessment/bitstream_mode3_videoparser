@@ -104,14 +104,35 @@ It will open a GDB run of the main video parser library. Type `run` and check if
 
 ## Docker
 
-> ⚠️ The Docker container is built for **Linux AMD64**. If you are using a different architecture, you might run into errors.
+### Pre-built Docker image
+
+We provide a pre-built Docker image on GitHub Container Registry. You can use it without building it yourself.
+
+To pull the image, you need to have a valid GitHub token with access to the repository. If you don't have a token, [create one here](https://github.com/settings/tokens), and make sure it has `read:packages` scope enabled.
+
+```bash
+docker login ghcr.io
+```
+
+You will be prompted to enter your GitHub username, and as password, enter your personal access token. Once you have a token, you can pull the image, and rename it to `videoparser` for easier use.
+
+```bash
+docker pull ghcr.io/telecommunication-telemedia-assessment/bitstream_mode3_videoparser:master
+docker image tag ghcr.io/telecommunication-telemedia-assessment/bitstream_mode3_videoparser:master videoparser
+```
+
+### Building the Docker image yourself
+
+> ⚠️ The Docker container is tested to work on **Linux AMD64**. If you are using a different architecture, you might run into errors.
 > Specifically, we have observed issues building the container under Apple Silicon Macs.
 
-Run:
+To build the image yourself, clone this repository and run:
 
 ```bash
 docker build -t videoparser .
 ```
+
+### Running the Docker image
 
 Then, to run the parser, assuming you have a video file `input.mp4` in your current directory, run:
 
