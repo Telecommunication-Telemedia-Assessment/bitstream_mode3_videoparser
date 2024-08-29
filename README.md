@@ -18,6 +18,21 @@ If you use this videoparser in any of your research work, please cite the follow
 }
 ```
 
+Contents:
+
+- [Requirements (Native Linux)](#requirements-native-linux)
+- [Building](#building)
+- [Usage](#usage)
+- [Troubleshooting](#troubleshooting)
+- [Docker](#docker)
+  - [Pre-built Docker image](#pre-built-docker-image)
+  - [Building the Docker image yourself](#building-the-docker-image-yourself)
+  - [Running the Docker image](#running-the-docker-image)
+- [Development](#development)
+- [Authors](#authors)
+- [License](#license)
+
+
 ## Requirements (Native Linux)
 
 You can also use Docker, see [the Docker guide](#docker).
@@ -101,8 +116,9 @@ If something is not working, please run:
 
 It will open a GDB run of the main video parser library. Type `run` and check if something breaks.
 
-
 ## Docker
+
+If you want to use the videoparser in a Docker container, you just need Docker installed on your system. Go to the [Docker website](https://www.docker.com/products/docker-desktop/) to install it.
 
 ### Pre-built Docker image
 
