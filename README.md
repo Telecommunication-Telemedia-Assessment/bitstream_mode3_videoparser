@@ -133,7 +133,7 @@ docker login ghcr.io
 You will be prompted to enter your GitHub username, and as password, enter your personal access token. Once you have a token, you can pull the image, and rename it to `videoparser` for easier use.
 
 ```bash
-docker pull ghcr.io/telecommunication-telemedia-assessment/bitstream_mode3_videoparser:master
+docker pull --platform linux/amd64 ghcr.io/telecommunication-telemedia-assessment/bitstream_mode3_videoparser:master
 docker image tag ghcr.io/telecommunication-telemedia-assessment/bitstream_mode3_videoparser:master videoparser
 ```
 
