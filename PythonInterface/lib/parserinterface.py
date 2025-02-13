@@ -1,7 +1,7 @@
 import os
 import sys
-import ctypes
 from ctypes import *
+
 import numpy as np
 
 
@@ -119,7 +119,7 @@ class FRAME_SUMS(Structure):
             ("AverageCoefs",((c_double*1024)*5)),
             ("AverageCoefsSQR",((c_double*1024)*5)),
             ("AverageCoefsBlkCnt",(c_uint32*1024)*5),
-            ("NormalizedField",(c_double*2)),
+            ("NormalizedField",(POINTER(c_float)*2)),
             ('FrameDistance', c_int)
     ]
 
