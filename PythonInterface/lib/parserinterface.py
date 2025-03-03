@@ -50,11 +50,26 @@ class ParserInterface:
                 # it's a null pointer
                 value = None
             elif hasattr(value, "_length_") and hasattr(value, "_type_"):
-                # Probably an array
-                value = np.ctypeslib.as_array(value).tolist()
+                # handle array types
+                try:
+                    # check if this is an array of pointers
+                    if hasattr(value._type_, "contents"):
+                        # handle array of pointers by dereferencing each one
+                        value = [ptr.contents if ptr else None for ptr in value]
+                    else:
+                        value = np.ctypeslib.as_array(value).tolist()
+                except (ValueError, NotImplementedError):
+                    # if conversion still fails, store as None
+                    value = None
             elif hasattr(value, "_fields_"):
                 # Probably another struct
                 value = ParserInterface.get_dict_from_struct(value)
+            elif hasattr(value, "contents"):
+                # Single pointer - dereference it
+                try:
+                    value = ParserInterface.get_dict_from_struct(value.contents)
+                except (ValueError, AttributeError):
+                    value = None
             else:
                 # do nothing to the data; take as-is
                 pass
