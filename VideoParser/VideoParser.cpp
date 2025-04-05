@@ -3,7 +3,7 @@
 
 
 int  api_mode = API_MODE_NEW_API_REF_COUNT, Started=0, Opened=0 ;
-int  CurrBlackBorder ; 
+int  CurrBlackBorder ;
 
 extern "C"
   {
@@ -30,8 +30,8 @@ extern "C"
     }
 
   /***************************************************************************************/
-  
-   int   ForcedGOB[16] = { 0 } ; 
+
+   int   ForcedGOB[16] = { 0 } ;
    //int   ForcedGOB[16] = { 1, 251, 501 } ;            //  6-HD
  //int    ForcedGOB[16] = { 1,2, 69, 319, 569, 587 } ; //  4-HD
   // int   ForcedGOB[16] = { 1,2, 251, 501, 595 } ;     //  3-HD
@@ -55,8 +55,10 @@ extern "C"
       Parser->GOB_Cnt       = min( 7, Parser->GOB_Cnt + 1 ) ;
       CurrSeq               = SeqStat[Parser->GOB_Cnt] + FrmStat->FrameType ;
       for( int i=0 ; i<4 ; SeqStat[Parser->GOB_Cnt][i++].FirstFrame   = Parser->PicCnt)  ;
-      } 
+      }
 
+    SAFE_FREE(FrmStat->S.NormalizedField[0]);
+    SAFE_FREE(FrmStat->S.NormalizedField[1]);
     memset( (void*)FrmStat, 0, sizeof( VIDEO_STAT ) ) ;
     Parser->SumUp_FrameStat( CurrSeq, FrameStatGlobal ) ;
     return( Parser->GOB_Cnt ) ;
@@ -138,7 +140,7 @@ extern "C"
   int    FrameCnt = 0 ;
 
 void CVideoParser::SumUp_FrameStat( VIDEO_STAT* Seq_Stat, VIDEO_STAT* FrmStat )
-  { 
+  {
   int  i=0, j, k, T = FrmStat->FrameType ;
 
   //if( TempFile == NULL )
@@ -201,7 +203,7 @@ CVideoParser::CVideoParser()
   {
   memset(this, 0, sizeof(CVideoParser) ) ;
   video_stream_idx = audio_stream_idx = -1 ;
-  GOB_Cnt = -1 ; 
+  GOB_Cnt = -1 ;
   PicCnt  =  0 ;
   }
 
@@ -395,7 +397,7 @@ if( (InitialWidth != CtxV->width) || (InitialHeight != CtxV->height) || (Initial
     TS -= TS0 ;
 
     av_ts_make_time_string( ts_str, TS, &CtxV->time_base ) ;
-    fprintf( stderr, "FrmNum:%5d  FrmType: %c   FrmSize: %7d   POC: %5d   Blcky: %5.3lf  %5.3lf  %5.3lf\n", video_frame_count++, av_get_picture_type_char(frame->pict_type), FrameStat->FrameSize, FrameStat->CurrPOC, 
+    fprintf( stderr, "FrmNum:%5d  FrmType: %c   FrmSize: %7d   POC: %5d   Blcky: %5.3lf  %5.3lf  %5.3lf\n", video_frame_count++, av_get_picture_type_char(frame->pict_type), FrameStat->FrameSize, FrameStat->CurrPOC,
              FrameStat->Blockiness[0][4], FrameStat->Blockiness[1][4], FrameStat->Blockiness[2][4] );
 
     FrameStat->PTS = frame->pts ;
