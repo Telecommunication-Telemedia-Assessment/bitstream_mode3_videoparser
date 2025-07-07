@@ -25,7 +25,7 @@ class VideoParser:
         if callable(callback):
             self.frame_callback = callback
         else:
-            raise StandardError("Callback not a callable function")
+            raise RuntimeError("Callback not a callable function")
 
     def parse(self):
         """
