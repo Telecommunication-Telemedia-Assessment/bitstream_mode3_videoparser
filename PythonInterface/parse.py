@@ -37,7 +37,7 @@ def main():
     # argument parsing
     parser = argparse.ArgumentParser(
         description="Bitstream Mode 3 Video Parser",
-        epilog="2017--2020",
+        epilog="2017--2025",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
@@ -61,10 +61,16 @@ def main():
             """
         ),
     )
+    parser.add_argument(
+        "--num-frames",
+        type=int,
+        default=None,
+        help="Number of frames to parse, default: all",
+    )
 
     a = vars(parser.parse_args())
 
-    video_parser = videoparser.VideoParser(a["input"], a["dll"])
+    video_parser = videoparser.VideoParser(a["input"], a["dll"], a["num_frames"])
 
     global output_file
     output_file = a["output"]

@@ -89,7 +89,7 @@ To run the parser, call:
 For help, see `./parser.sh --help`:
 
 ```
-usage: parse.py [-h] [--dll DLL] [--output OUTPUT] input
+usage: parse.py [-h] [--dll DLL] [--output OUTPUT] [--num-frames NUM_FRAMES] input
 
 Bitstream Mode 3 Video Parser
 
@@ -102,8 +102,10 @@ optional arguments:
   --output OUTPUT  Path to output JSON stats file, a file extension of
                    .json.bz2 will compress it; if None report filename will be
                    automatically estimated based on video name (default: None)
+  --num-frames NUM_FRAMES
+                   Number of frames to parse, default: all (default: None)
 
-2017--2020
+2017--2025
 ```
 
 ## Troubleshooting

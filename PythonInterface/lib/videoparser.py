@@ -1,11 +1,13 @@
 import os
+
 import lib.parserinterface as pi
+
 
 class VideoParser:
     """
     Class for interfacing with parser Interface on a high level
     """
-    def __init__(self, input_file, dll_path):
+    def __init__(self, input_file, dll_path, num_frames=None):
         self.input_file = input_file
         self.frame_callback = None
 
@@ -14,6 +16,8 @@ class VideoParser:
 
         self.parser = pi.ParserInterface(self.input_file, dll_path)
         self.collected_stats = []
+        self.num_frames = num_frames
+        self.num_frames_parsed = 0
 
     def get_stats(self):
         return self.collected_stats
@@ -49,7 +53,10 @@ class VideoParser:
                 break
 
             self.collected_stats.append(stats)
-
+            self.num_frames_parsed += 1
             # pass bitstream data back to main program if needed
             if self.frame_callback is not None:
                 self.frame_callback(stats)
+
+            if self.num_frames is not None and self.num_frames_parsed >= self.num_frames:
+                break
